@@ -1,0 +1,15 @@
+wm.bar.position: top
+
+wm.binding.browser: c
+wm.binding.exit_app: q
+wm.binding.settings: s
+
+wm.binding.files: n
+wm.binding.notification_ui: Shift+n
+
+wm.binding.launcher.window: w
+wm.binding.wifi: Shift+w
+
+i3xrocks.date.format2: %a, %d %b %T
+
+regolith.look.path: /usr/share/regolith-look/i3-default
