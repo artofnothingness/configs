@@ -12,7 +12,7 @@ function rosdep_install {
 # # # Functions # # # 
 function colcon_build_release {
   if [[ $# == 0 ]]; then
-    colcon build --symlink-install --cmake-args -DCMAKE_BUILD_TYPE=Release
+    colcon build --symlink-install --cmake-args -DCMAKE_BUILD_TYPE=Release -DCMAKE_EXPORT_COMPILE_COMMANDS=ON
   else
     colcon build --packages-select "$@" --symlink-install --cmake-args -DCMAKE_BUILD_TYPE=Release -DCMAKE_EXPORT_COMPILE_COMMANDS=ON
   fi
