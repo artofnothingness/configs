@@ -24,6 +24,8 @@ function colcon_test {
 
 function ros_source {
   source /opt/ros/${ROS_DISTRO}/setup.zsh
+  export RCUTILS_COLORIZED_OUTPUT=1
+
   include ~/rep/ros2/install/setup.zsh
   include /opt/nav2_ws/install/setup.zsh
   include /opt/nav2_deps_ws/install/setup.zsh
