@@ -43,6 +43,8 @@ install_tools() {
 
 stow -t ~ */
 
+install_tools
+
 while test $# -gt 0
 do
     case "$1" in
@@ -59,5 +61,3 @@ do
     esac
     shift
 done
-
-install_tools
