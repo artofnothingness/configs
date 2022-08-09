@@ -280,11 +280,11 @@ set_from_resource $i3-wm.binding.move_scratchpad i3-wm.binding.move_scratchpad C
 bindsym $mod+$i3-wm.binding.move_scratchpad move to scratchpad
 
 ## Modify // Tile/Float Focus Toggle // <><Shift> t ##
-set_from_resource $i3-wm.binding.focus_toggle i3-wm.binding.focus_toggle Shift+t
+set_from_resource $i3-wm.binding.focus_toggle i3-wm.binding.focus_toggle t
 bindsym $mod+$i3-wm.binding.focus_toggle focus mode_toggle
 
 ## Modify // Window Layout Mode // <> t ##
-set_from_resource $i3-wm.binding.layout_mode i3-wm.binding.layout_mode t
+set_from_resource $i3-wm.binding.layout_mode i3-wm.binding.layout_mode Shift+t
 bindsym $mod+$i3-wm.binding.layout_mode layout toggle tabbed splith splitv
 
 ## Modify // Move Window to Workspace 1 - 10 // <><Shift> 0..9 ##
