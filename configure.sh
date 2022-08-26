@@ -31,14 +31,13 @@ install_tools() {
     fzf \
     fonts-font-awesome \
     lm-sensors \
-    ranger \
+    nnn \
     tmux \
     tmuxinator \
     autojump \
     python3-pip
 
   pip install i3ipc libtmux
-  git clone git@github.com:alexanderjeurissen/ranger_devicons ~/.config/ranger/plugins/ranger_devicons
 }
 
 stow -t ~ */
