@@ -4,9 +4,17 @@ sudo apt update
 sudo apt install -y software-properties-common stow
 
 install_regolith() {
-  sudo add-apt-repository -y ppa:regolith-linux/release
+  wget -qO - https://regolith-desktop.org/regolith.key | \
+    gpg --dearmor | sudo tee /usr/share/keyrings/regolith-archive-keyring.gpg > /dev/null
+
+  echo deb "[arch=amd64 signed-by=/usr/share/keyrings/regolith-archive-keyring.gpg] \
+    https://regolith-desktop.org/release-ubuntu-jammy-amd64 jammy main" | \
+    sudo tee /etc/apt/sources.list.d/regolith.list
+
   sudo apt update
-  sudo apt install -y regolith-desktop i3xrocks-net-traffic i3xrocks-cpu-usage i3xrocks-time i3xrocks-keyboard-layout i3xrocks-volume i3xrocks-weather i3xrocks-battery
+  sudo apt install regolith-desktop regolith-compositor-picom-glx
+  sudo apt install -y i3xrocks-focused-window-name i3xrocks-rofication i3xrocks-info i3xrocks-app-launcher i3xrocks-memory
+  sudo apt upgrade
 }
 
 install_zsh() {
@@ -45,11 +53,11 @@ install_tools() {
 
 stow -t ~ */
 
-install_tools
-
 while test $# -gt 0
 do
     case "$1" in
+        --tools) install_tools
+            ;;
         --zsh) install_zsh
             ;;
         --nvim) install_nvim
