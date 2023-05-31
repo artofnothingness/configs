@@ -30,7 +30,7 @@ install_nvim() {
   sudo apt install -y \
     npm 
 
-  git clone --depth=1 git@github.com:artofnothingness/nvim.git ~/.config/nvim
+  git clone --depth=1 https://github.com/artofnothingness/nvim.git ~/.config/nvim
   source ~/.config/nvim/utils/install.sh
 }
 
