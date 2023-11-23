@@ -1,6 +1,5 @@
 # General
 alias lg='lazygit'
-alias ranger='ranger --choosedir=$HOME/.rangerdir; LASTDIR=`cat $HOME/.rangerdir`; cd "$LASTDIR"'
 alias ra="ranger"
 
 
