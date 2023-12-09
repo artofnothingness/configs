@@ -1,0 +1,13 @@
+regolith.look.path: /usr/share/regolith-look/blackhole
+
+wm.bar.position: top
+wm.binding.browser: c
+wm.binding.exit_app: q
+wm.binding.settings: s
+wm.binding.files: n
+wm.binding.notification_ui: Shift+n
+
+i3xrocks.date.format2: %a, %d %b %T
+
+regolith.wallpaper.file:
+regolith.wallpaper.color.primary:
