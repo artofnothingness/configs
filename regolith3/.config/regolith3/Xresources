@@ -7,4 +7,4 @@ wm.binding.notification_ui: Shift+n
 
 i3xrocks.date.format2: %a, %d %b %T
 
-regolith.look.path: /usr/share/regolith-look/ayu-mirage
+regolith.look.path: /usr/share/regolith-look/i3-default

@@ -12,6 +12,33 @@ install_zsh() {
   sudo apt install -y zsh autojump
 }
 
+install_regolith() {
+    wget -qO - https://regolith-desktop.org/regolith.key | \
+        gpg --dearmor | sudo tee /usr/share/keyrings/regolith-archive-keyring.gpg > /dev/null
+
+    echo deb "[arch=amd64 signed-by=/usr/share/keyrings/regolith-archive-keyring.gpg] \
+    https://regolith-desktop.org/release-3_0-ubuntu-jammy-amd64 jammy main" | \
+    sudo tee /etc/apt/sources.list.d/regolith.list
+
+    sudo apt update
+
+    sudo apt install \
+        regolith-desktop \
+        regolith-session-flashback
+
+    sudo apt install \
+        i3xrocks-battery \
+        i3xrocks-weather \
+        i3xrocks-rofication \
+        i3xrocks-focused-window-name \
+        i3xrocks-disk-capacity \
+        i3xrocks-app-launcher \
+        i3xrocks-info \
+        i3xrocks-volume \
+        i3xrocks-keyboard-layout
+}
+
+
 install_tools() {
   sudo apt update
   sudo apt install -y \
@@ -34,6 +61,8 @@ do
         --tools) install_tools
             ;;
         --zsh) install_zsh
+            ;;
+        --regolith) install_regolith
             ;;
         --*) echo "Bad option $1"
             ;;
