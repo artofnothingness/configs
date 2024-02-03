@@ -2,12 +2,13 @@ wm.bar.position: top
 
 wm.binding.browser: c
 wm.binding.exit_app: q
+wm.binding.settings: s
 
-wm.binding.notification_ui: Shift+n
 wm.binding.files: n
+wm.binding.notification_ui: Shift+n
 
+Km.binding.launcher.window: w
 wm.binding.wifi: Shift+w
-wm.binding.launcher.window: w
 
 i3xrocks.date.format2: %a, %d %b %T
 
