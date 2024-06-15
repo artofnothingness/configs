@@ -1,15 +1,18 @@
 #!/bin/bash
 
+XDG_CONFIG_HOME=~/.config
+
 sudo apt update
-sudo apt install -y software-properties-common stow
+sudo apt install -y software-properties-common stow curl
 
 install_zsh() {
-  git clone --depth=1 git@github.com:ohmyzsh/ohmyzsh.git ~/.oh-my-zsh
-  git clone --depth=1 git@github.com:romkatv/powerlevel10k.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/themes/powerlevel10k
-  git clone --depth=1 git@github.com:zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
-  git clone --depth=1 git@github.com:zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+  curl -sS https://starship.rs/install.sh | sudo sh -s -- --yes
+  curl -sSfL https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | sh
+  git clone --depth=1 https://github.com/ohmyzsh/ohmyzsh.git ~/.oh-my-zsh
+  git clone --depth=1 https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+  git clone --depth=1 https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
 
-  sudo apt install -y zsh autojump
+  sudo apt install -y zsh
 }
 
 install_regolith() {
@@ -22,19 +25,15 @@ install_regolith() {
 
     sudo apt update
 
-    sudo apt install \
+    sudo apt install -y \
         regolith-desktop \
         regolith-session-flashback
 
-    sudo apt install \
+    sudo apt install -y \
         i3xrocks-battery \
         i3xrocks-weather \
-        i3xrocks-rofication \
-        i3xrocks-focused-window-name \
-        i3xrocks-disk-capacity \
-        i3xrocks-app-launcher \
-        i3xrocks-info \
         i3xrocks-volume \
+        i3xrocks-time \
         i3xrocks-keyboard-layout
 }
 
@@ -42,18 +41,29 @@ install_regolith() {
 install_tools() {
   sudo apt update
   sudo apt install -y \
-    zsh \
     neofetch \
-    fzf \
     lm-sensors \
     tmux \
     autojump \
     python3-pip
 
   pip install i3ipc libtmux
+
+  . ${XDG_CONFIG_HOME}/scripts/install-lazygit.sh
+  . ${XDG_CONFIG_HOME}/scripts/install-yazi.sh
+  . ${XDG_CONFIG_HOME}/scripts/install-fzf.sh
 }
 
-stow -t ~ */
+install_neovim() {
+    git clone https://github.com/artofnothingness/nvim.git $XDG_CONFIG_HOME/nvim
+    . ${XDG_CONFIG_HOME}/nvim/utils/install-nvim.sh
+}
+
+install_gdb() {
+    . ${XDG_CONFIG_HOME}/scripts/install-gdb.sh
+}
+
+stow -v -R -t ~ */
 
 while test $# -gt 0
 do
@@ -63,6 +73,10 @@ do
         --zsh) install_zsh
             ;;
         --regolith) install_regolith
+            ;;
+        --nvim) install_neovim
+            ;;
+        --gdb) install_gdb
             ;;
         --*) echo "Bad option $1"
             ;;

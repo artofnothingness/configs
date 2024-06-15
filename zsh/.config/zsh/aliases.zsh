@@ -1,17 +1,14 @@
 # General
-alias lg='lazygit'
-alias ra="ranger"
+alias lg=lazygit
+alias nv=nvim
 
+function yy() {
+  local tmp="$(mktemp -t "yazi-cwd.XXXXXX")"
+  yazi "$@" --cwd-file="$tmp"
+  if cwd="$(cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
+    cd -- "$cwd"
+  fi
+  rm -f -- "$tmp"
+}
 
-alias nv="nvim"
-
-alias dk="docker"
-
-# tmuxinator
-alias mux="tmuxinator"
-
-alias tm="tmux"
-alias tma="tmux attach"
-
-alias zs='source ~/.zshrc'
-
+alias yz=yazi
