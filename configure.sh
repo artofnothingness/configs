@@ -40,28 +40,39 @@ install_regolith() {
 install_tools() {
   sudo apt update
   sudo apt install -y \
-    neofetch \
+    fastfetch \
     lm-sensors \
     tmux \
     autojump \
-    python3-pip
+    python3-pip \
+    python3-venv \
+    ripgrep \
+    fd-find \
+    unzip \
+    xclip
 
-  pip install i3ipc libtmux
+  sudo apt install python3-i3ipc python3-libtmux
 
   . ${XDG_CONFIG_HOME}/scripts/install-lazygit.sh
   . ${XDG_CONFIG_HOME}/scripts/install-yazi.sh
   . ${XDG_CONFIG_HOME}/scripts/install-fzf.sh
 
     git config --global user.email "aibudyakov@gg.com"
-    git config --global user.name "Aleksey Budyakov"
+    git config --global user.name "Aleksey"
     git config --global pull.rebase true
 
     curl -fsSL https://opencode.ai/install | bash
 }
 
 install_neovim() {
-    git clone https://github.com/artofnothingness/nvim.git $XDG_CONFIG_HOME/nvim
-    . ${XDG_CONFIG_HOME}/nvim/utils/install-nvim.sh
+    . ${XDG_CONFIG_HOME}/scripts/install-git.sh
+    . ${XDG_CONFIG_HOME}/scripts/install-nvim.sh
+    . ${XDG_CONFIG_HOME}/scripts/install-tree-sitter.sh
+    if [ ! -d "$XDG_CONFIG_HOME/nvim" ]; then
+        git clone https://github.com/artofnothingness/nvim.git $XDG_CONFIG_HOME/nvim
+    fi
+
+    sudo sysctl -w kernel.yama.ptrace_scope=0
 }
 
 install_gdb() {
