@@ -1,0 +1,5 @@
+interface:
+  display_name: "Codebase Design"
+  short_description: "Design principles and architecture review for composable, testable code"
+policy:
+  allow_implicit_invocation: false

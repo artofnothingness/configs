@@ -1,0 +1,35 @@
+#!/usr/bin/env bash
+# Find and print the path to one ticket file. Tickets live at
+# .scratch/<slug>/tickets/<NN>-<slug>.md.
+#
+# Usage: task-brief FEATURE_SLUG TASK_NUMBER
+set -euo pipefail
+
+if [ $# -ne 2 ]; then
+  echo "usage: task-brief FEATURE_SLUG TASK_NUMBER" >&2
+  exit 2
+fi
+
+slug=$1
+n=$2
+
+root=$(git rev-parse --show-toplevel)
+tickets_dir="$root/.scratch/$slug/tickets"
+
+[ -d "$tickets_dir" ] || { echo "tickets directory not found: $tickets_dir" >&2; exit 2; }
+
+nn=$(printf "%02d" "$n")
+matches=("$tickets_dir/${nn}-"*.md)
+
+if [ ${#matches[@]} -eq 0 ]; then
+  echo "no ticket found matching ${nn}-*.md in $tickets_dir" >&2
+  exit 3
+fi
+
+if [ ${#matches[@]} -gt 1 ]; then
+  echo "multiple tickets match ${nn}-*.md in $tickets_dir:" >&2
+  printf '  %s\n' "${matches[@]}" >&2
+  exit 3
+fi
+
+echo "${matches[0]}"

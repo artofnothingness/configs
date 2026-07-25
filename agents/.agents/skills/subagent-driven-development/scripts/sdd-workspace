@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+# Resolve and ensure the workspace directory for one feature's SDD
+# artifacts: task briefs, implementer reports, review packages, and the
+# progress ledger. Prints the directory's absolute path.
+#
+# Workspace lives under .scratch/<feature-slug>/ — the same directory
+# that holds the tickets/. One feature, one directory.
+#
+# Usage: sdd-workspace FEATURE_SLUG
+set -euo pipefail
+
+if [ $# -ne 1 ]; then
+  echo "usage: sdd-workspace FEATURE_SLUG" >&2
+  exit 2
+fi
+
+slug=$1
+[ -n "$slug" ] || { echo "FEATURE_SLUG must not be empty" >&2; exit 2; }
+
+root=$(git rev-parse --show-toplevel)
+dir="$root/.scratch/$slug"
+mkdir -p "$dir"
+cd "$dir" && pwd
