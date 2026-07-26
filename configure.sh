@@ -88,7 +88,12 @@ install_wezterm() {
     sudo apt install -y wezterm
 }
 
-stow -v -R -t ~ */
+for dir in */; do
+    case "$dir" in
+        agents/|opencode/) ;;
+        *) stow -v -R -t ~ "$dir" ;;
+    esac
+done
 
 while test $# -gt 0
 do
@@ -104,6 +109,13 @@ do
         --gdb) install_gdb
             ;;
         --wezterm) install_wezterm
+            ;;
+        --skills)
+            rm -rf ~/.agents
+            stow -v -R -t ~ agents
+            ;;
+        --opencode-config)
+            stow -v -R -t ~ opencode
             ;;
         --*) echo "Bad option $1"
             ;;
