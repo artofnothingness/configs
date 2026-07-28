@@ -14,7 +14,7 @@ This skill takes the current conversation context and codebase understanding and
 
 Check with the user that this matches their expectations.
 
-3. Write the spec using the template below, then save it to `.scratch/specs/<feature>.md`.
+3. Write the spec using the template below, then save it to `.scratch/<feature>/spec.md`.
 
 <spec-template>
 
@@ -31,9 +31,11 @@ The solution to the problem, from the user's perspective.
 A LONG, numbered list of user stories. Each user story should be in the format of:
 
 1. As an <actor>, I want a <feature>, so that <benefit>
+   - **Test:** <how to verify this story works — specific scenario, expected outcome>
 
 <user-story-example>
 1. As a mobile bank customer, I want to see balance on my accounts, so that I can make better informed decisions about my spending
+   - **Test:** open accounts list → balance displayed for each account → matches backend data
 </user-story-example>
 
 This list of user stories should be extremely extensive and cover all aspects of the feature.
