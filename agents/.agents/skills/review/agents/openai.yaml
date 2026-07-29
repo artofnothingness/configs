@@ -1,4 +1,0 @@
-interface:
-  display_name: "Review"
-  short_description: "Review code against user stories and find bugs"
-

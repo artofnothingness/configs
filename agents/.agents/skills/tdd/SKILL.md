@@ -11,6 +11,10 @@ Write the test first. Watch it fail. Write minimal code to pass.
 
 **Core principle:** If you didn't watch the test fail, you don't know if it tests the right thing.
 
+**Before writing any code:** Read `.scratch/<feature>/shared-context.md` (см. навык `shared-context`). Follow the conventions and reuse existing utilities — don't reimplement what's already there. If you discover a new convention, utility, or gotcha not in the file — add it and tell the orchestrator.
+
+**Если работаешь над тикетом:** обнови его статус в начале (`ready` → `in_progress`). Когда acceptance criteria выполнены и тесты проходят — отметь критерии как выполненные.
+
 **Violating the letter of the rules is violating the spirit of the rules.**
 
 ## When to Use
@@ -183,7 +187,7 @@ Can't check all boxes? You skipped TDD. Start over.
 
 ## Debugging Integration
 
-Bug found? Write a failing test that reproduces the bug (RED), then fix it (GREEN), then REFACTOR. The controller may have mapped the bug to a user story — check the story's **Test:** field for the expected behaviour.
+Bug found? Write a failing test that reproduces the bug (RED), then fix it (GREEN), then REFACTOR. The orchestrator may have mapped the bug to a user story — check the story's **Test:** field for the expected behaviour.
 
 Never fix bugs without a test.
 
