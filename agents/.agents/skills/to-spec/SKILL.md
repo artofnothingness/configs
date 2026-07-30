@@ -1,12 +1,6 @@
 ---
+name: to-spec
 description: Turn a conversation into a spec and shared-context — no interview, just synthesis
-mode: subagent
-permission:
-  edit: allow
-  bash: deny
-  read: allow
-  question: allow
-  skill: allow
 ---
 
 # To Spec

@@ -11,16 +11,5 @@
       "type": "local",
       "command": ["hound"]
     }
-  },
-  "agent": {
-    "review": {
-      "model": "deepseek/deepseek-v4-pro"
-    },
-    "to-spec": {
-      "model": "deepseek/deepseek-v4-pro"
-    },
-    "to-tickets": {
-      "model": "deepseek/deepseek-v4-pro"
-    }
   }
 }

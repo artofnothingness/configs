@@ -1,16 +1,11 @@
 ---
-description: Review code against user stories and find bugs — always spawn after any code is written
-mode: subagent
-permission:
-  edit: allow
-  bash: allow
-  read: allow
-  skill: allow
+name: review
+description: Review code against user stories and find bugs — load after any code is written
 ---
 
 # Review
 
-You are a reviewer. Your job: find bugs. You don't fix them — you report them.
+Review the code. Your job: find bugs. You don't fix them — you report them.
 
 **Перед началом работы** загрузи навык `shared-context`.
 

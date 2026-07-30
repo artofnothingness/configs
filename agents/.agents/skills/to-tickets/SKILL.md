@@ -1,12 +1,6 @@
 ---
+name: to-tickets
 description: Break a plan or spec into tracer-bullet tickets with blocking edges
-mode: subagent
-permission:
-  edit: allow
-  bash: deny
-  read: allow
-  question: allow
-  skill: allow
 ---
 
 # To Tickets

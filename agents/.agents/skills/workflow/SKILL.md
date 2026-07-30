@@ -13,9 +13,9 @@ grilling → to-spec → to-tickets → [implement → commit → review] ↻ �
 
 Если пользователь сообщает о баге (вне основного пайплайна):
 
-1. Диспатчить `@general`. Subagent загружает навыки `tdd` и `shared-context` — найти причину бага, написать failing test, исправить.
+1. Диспатчить `@general` c навыками `tdd` и `shared-context` — найти причину бага, написать failing test, исправить.
 2. Диспатчить `@general` для коммита.
-3. Диспатчить `@review`.
+3. Диспатчить `@general` c навыком `review`.
 
 **Найден баг?** → та же логика 4c: проверка user story → fix → re-review. Те же лимиты итераций.
 
@@ -23,7 +23,7 @@ grilling → to-spec → to-tickets → [implement → commit → review] ↻ �
 
 Файл `.scratch/<feature>/shared-context.md`. См. навык `shared-context` за полными правилами.
 - После `to-spec` — убедись, что создан.
-- Subagent дополнил — оркестратор должен передать обновлённый файл при следующих диспатчах.
+- Агент дополнил — оркестратор должен передать обновлённый файл при следующих диспатчах.
 
 ## Pipeline
 
@@ -31,20 +31,20 @@ grilling → to-spec → to-tickets → [implement → commit → review] ↻ �
 Идея ещё сырая, есть открытые вопросы? Загрузи навык `grilling` и проведи интервью сам. Цель — достичь shared understanding, закрыть все решения. Если решения уже приняты — пропускай, иди в to-spec.
 
 ### 2. to-spec
-Диспатчить `@to-spec`. Результат: `spec.md`, `shared-context.md`.
+Диспатчить `@general` c навыком `to-spec`. Результат: `spec.md`, `shared-context.md`.
 
 ### 3. to-tickets
-Диспатчить `@to-tickets`. Результат: тикеты в `.scratch/<feature>/tickets/`.
+Диспатчить `@general` c навыком `to-tickets`. Результат: тикеты в `.scratch/<feature>/tickets/`.
 
 ### 4. Implement → Review Loop
 
 Начинай с frontier тикета (все блокирующие уже done).
 
 #### 4a. Implement
-Диспатчить `@general`. Subagent загружает навыки `tdd` и `shared-context`. Диспатчить `@general` для коммита.
+Диспатчить `@general` c навыками `tdd` и `shared-context`. Диспатчить `@general` для коммита.
 
 #### 4b. Review
-Диспатчить `@review`.
+Диспатчить `@general` c навыком `review`.
 
 #### 4c. Bug Found?
 
@@ -52,7 +52,7 @@ grilling → to-spec → to-tickets → [implement → commit → review] ↻ �
 
 1. Есть ли в spec user story, покрывающая этот баг?
    - **Есть** → повторить 4a → снова review (4b)
-   - **Нет** → диспатчить `@to-spec` дописать user story и обновить spec → повторить 4a → снова review (4b)
+   - **Нет** → диспатчить `@general` c навыком `to-spec` дописать user story и обновить spec → повторить 4a → снова review (4b)
 
 2. Итерации: максимум **5 циклов** `review` (4b) → fix (4a) → `review` на один тикет.
    После 5 итераций баги остаются → **стоп, escalate** пользователю.
@@ -60,7 +60,7 @@ grilling → to-spec → to-tickets → [implement → commit → review] ↻ �
 **Review чист:** тикет done. Следующий frontier тикет.
 
 ### 5. Final Review
-Все тикеты done → диспатчить `@review` на всю фичу:
+Все тикеты done → диспатчить `@general` c навыком `review` на всю фичу:
 - Все user stories покрыты и работают
 - Интеграция между тикетами не сломана
 - Ни один тест не падает
