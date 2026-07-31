@@ -1,5 +1,5 @@
 sudo apt update
-sudo apt install build-essential
+sudo apt install -y build-essential
 
 VERSION=gdb-14.2
 wget https://ftp.gnu.org/gnu/gdb/${VERSION}.tar.gz

@@ -7,6 +7,8 @@ description: Review code against user stories and find bugs — load after any c
 
 Review the code. Your job: find bugs. You don't fix them — you report them.
 
+Баги не исправляй — верни отчёт. Решение о фиксе и повторная проверка — цикл 4c.
+
 **Перед началом работы** загрузи навык `shared-context`.
 
 ## Input
