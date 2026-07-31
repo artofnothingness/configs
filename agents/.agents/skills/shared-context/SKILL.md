@@ -1,11 +1,11 @@
 ---
 name: shared-context
-description: Shared knowledge file — structure, rules for orchestrator, and guidance for subagents. Every subagent reads it before work; orchestrator passes it on every dispatch and maintains it.
+description: Shared knowledge file — structure, rules for the main agent, and guidance for agents. Every agent reads it before work; the main agent maintains it.
 ---
 
 # Shared Context
 
-Файл `.scratch/<feature>/shared-context.md` — единый источник знаний о проекте для всех subagent-ов. Формируется один раз на этапе `to-spec` и дополняется по мере обнаружения нового.
+Файл `.scratch/<feature>/shared-context.md` — единый источник знаний о проекте для всех агентов. Формируется один раз на этапе `to-spec` и дополняется по мере обнаружения нового.
 
 ## Template
 
@@ -33,14 +33,16 @@ description: Shared knowledge file — structure, rules for orchestrator, and gu
 - Environment quirks, version pins, known issues
 ```
 
-## Rules for orchestrator
+## Rules for the main agent
 
-- After `to-spec` — убедись, что `shared-context.md` создан
-- При dispatch **любого** subagent-а — укажи загрузить `shared-context`
-- Subagent сообщил об обновлении `shared-context.md` — оркестратор должен передать обновлённый файл при следующих диспатчах
+- После `to-spec` — убедись, что `shared-context.md` создан
+- При dispatch субагента — укажи только **путь** к `shared-context.md` (`.scratch/<feature>/shared-context.md`). Содержимое файла НЕ передавать — субагент прочитает его сам
+- Читай файл напрямую перед каждым этапом
+- Агент сообщил об обновлении `shared-context.md` — не дублируй изменения в промптах, файл уже на диске
 
 ## Rules for subagents
 
-- **Перед началом работы** — прочитай `shared-context.md`. Используй описанные conventions, переиспользуй существующие типы/утилиты, следуй build/test командам
-- **Обнаружил новое** (утилита, convention, gotcha, не отражённые в файле) — дополни `shared-context.md` сам и сообщи оркестратору
+- **Перед началом работы** — прочитай `shared-context.md` с диска. Используй описанные conventions, переиспользуй существующие типы/утилиты, следуй build/test командам
+- **Обнаружил новое** (утилита, convention, gotcha, не отражённые в файле) — дополни `shared-context.md` сам и упомяни в отчёте одним предложением
 - **Не дублируй** — если утилита или тип уже описаны в shared context, используй их вместо создания новых
+- **Отчёт** — кратко: статус, изменённые файлы, дополнения к shared-context. Содержимое файлов в отчёт не копировать

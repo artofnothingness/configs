@@ -15,7 +15,7 @@ Break a plan, spec, or conversation into a set of **tickets** — tracer-bullet 
 
 Work from whatever is already in the conversation context. If the user passes a reference (a spec path, an issue number or URL) as an argument, fetch it and read its full body and comments.
 
-**Read `shared-context.md`** (см. навык `shared-context`) — используй codebase map, conventions и shared types при построении структуры файлов. Обнаружил новое — дополни файл и сообщи оркестратору.
+**Read `shared-context.md`** (см. навык `shared-context`) — используй codebase map, conventions и shared types при построении структуры файлов. Обнаружил новое — дополни файл и сообщи пользователю.
 
 ### 2. Explore the codebase (optional)
 

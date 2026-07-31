@@ -24,11 +24,11 @@ install_regolith() {
 
     sudo apt update
 
-    sudo apt install \
+    sudo apt install -y \
         regolith-desktop \
         regolith-session-flashback
 
-    sudo apt install \
+    sudo apt install -y \
         i3xrocks-battery \
         i3xrocks-weather \
         i3xrocks-volume \
@@ -51,11 +51,12 @@ install_tools() {
     unzip \
     xclip
 
-  sudo apt install python3-i3ipc python3-libtmux
+  sudo apt install -y python3-i3ipc python3-libtmux
 
   . ${XDG_CONFIG_HOME}/scripts/install-lazygit.sh
   . ${XDG_CONFIG_HOME}/scripts/install-yazi.sh
   . ${XDG_CONFIG_HOME}/scripts/install-fzf.sh
+  bash ${XDG_CONFIG_HOME}/scripts/install-node.sh
 
     git config --global user.email "aibudyakov@gg.com"
     git config --global user.name "Aleksey"

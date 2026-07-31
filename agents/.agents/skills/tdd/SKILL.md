@@ -11,7 +11,7 @@ Write the test first. Watch it fail. Write minimal code to pass.
 
 **Core principle:** If you didn't watch the test fail, you don't know if it tests the right thing.
 
-**Before writing any code:** Read `.scratch/<feature>/shared-context.md` (см. навык `shared-context`). Follow the conventions and reuse existing utilities — don't reimplement what's already there. If you discover a new convention, utility, or gotcha not in the file — add it and tell the orchestrator.
+**Before writing any code:** Read `.scratch/<feature>/shared-context.md` (см. навык `shared-context`). Follow the conventions and reuse existing utilities — don't reimplement what's already there. If you discover a new convention, utility, or gotcha not in the file — add it and mention it in your report.
 
 **Если работаешь над тикетом:** обнови его статус в начале (`ready` → `in_progress`). Когда acceptance criteria выполнены и тесты проходят — отметь критерии как выполненные.
 
@@ -19,11 +19,12 @@ Write the test first. Watch it fail. Write minimal code to pass.
 
 ## When to Use
 
-**Always:**
+**Always (с failing test first):**
 - New features
 - Bug fixes
-- Refactoring
 - Behavior changes
+
+**Рефакторинг** — отдельный тест не нужен: защищают существующие бизнес-тесты (Test Scope). Новый тест — только если поведение меняется.
 
 **Exceptions (ask your human partner):**
 - Throwaway prototypes
@@ -32,10 +33,25 @@ Write the test first. Watch it fail. Write minimal code to pass.
 
 Thinking "skip TDD just this once"? Stop. That's rationalization.
 
+## Test Scope (что тестируем)
+
+Тестируем только **верхнеуровневое бизнес-поведение** — тестовая поверхность задаётся в spec (см. навык `to-spec`: «the fewer test entry points, the better — the ideal number is one»):
+
+- **User stories из spec** — каждая story имеет **Test:** поле; это и есть тест
+- **Acceptance criteria тикета** — каждый критерий проверяется тестом
+- **Баги** — failing test, воспроизводящий баг (см. Debugging Integration)
+
+**НЕ тестируем напрямую:**
+- Внутренние хелперы, утилиты, private-методы — покрываются транзитивно через бизнес-тест
+- Тривиальный код (геттеры, константы, glue)
+- UI-детали, конфиги, сгенерированный код
+
+Если бизнес-поведение нельзя протестировать через верхний интерфейс — интерфейс слишком низкий, поднимай тест-точку.
+
 ## The Iron Law
 
 ```
-NO PRODUCTION CODE WITHOUT A FAILING TEST FIRST
+NO PRODUCTION CODE IMPLEMENTING A USER STORY WITHOUT A FAILING TEST FIRST
 ```
 
 Write code before the test? Delete it. Start over.
@@ -58,6 +74,7 @@ Write one minimal test showing what should happen.
 
 **Requirements:**
 - One behavior
+- Пишется против тест-точки из spec: user story (**Test:** поле) или acceptance criterion тикета — не против внутренних деталей
 - Clear name
 - Real code (no mocks unless unavoidable)
 - See [writing-good-tests.md](writing-good-tests.md) for test quality rules
@@ -66,9 +83,7 @@ Write one minimal test showing what should happen.
 
 **MANDATORY. Never skip.**
 
-```bash
-npm test path/to/test.test.ts
-```
+Запусти тест именно этого файла (команду смотри в `shared-context.md`).
 
 Confirm:
 - Test fails (not errors)
@@ -87,9 +102,7 @@ Write simplest code to pass the test. Don't add features, refactor other code, o
 
 **MANDATORY.**
 
-```bash
-npm test path/to/test.test.ts
-```
+Запусти тест именно этого файла (команду смотри в `shared-context.md`).
 
 Confirm:
 - Test passes
@@ -165,14 +178,14 @@ When writing or changing any test, read [writing-good-tests.md](writing-good-tes
 
 Before marking work complete:
 
-- [ ] Every new function/method has a test
+- [ ] Каждая user story тикета / acceptance criterion покрыта тестом (не каждый метод)
 - [ ] Watched each test fail before implementing
 - [ ] Each test failed for expected reason (feature missing, not typo)
 - [ ] Wrote minimal code to pass each test
 - [ ] All tests pass
 - [ ] Output pristine (no errors, warnings)
 - [ ] Tests use real code (mocks only if unavoidable)
-- [ ] Edge cases and errors covered
+- [ ] Edge cases бизнес-поведения покрыты
 
 Can't check all boxes? You skipped TDD. Start over.
 
@@ -187,14 +200,14 @@ Can't check all boxes? You skipped TDD. Start over.
 
 ## Debugging Integration
 
-Bug found? Write a failing test that reproduces the bug (RED), then fix it (GREEN), then REFACTOR. The orchestrator may have mapped the bug to a user story — check the story's **Test:** field for the expected behaviour.
+Bug found? Write a failing test that reproduces the bug (RED), then fix it (GREEN), then REFACTOR. Check the spec: есть ли user story, покрывающая этот баг — смотри её **Test:** поле для ожидаемого поведения (см. шаг 4c workflow-скилла).
 
 Never fix bugs without a test.
 
 ## Final Rule
 
 ```
-Production code → test exists and failed first
+Production code implementing a user story → test exists and failed first
 Otherwise → not TDD
 ```
 
