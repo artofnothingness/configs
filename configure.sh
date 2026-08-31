@@ -89,6 +89,8 @@ install_wezterm() {
     sudo apt install -y wezterm
 }
 
+mkdir -p "$HOME/.local/share" "$HOME/.local/bin" "$HOME/.local/state"
+
 for dir in */; do
     case "$dir" in
         agents/|opencode/) ;;
