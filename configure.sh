@@ -42,7 +42,6 @@ install_tools() {
   sudo apt install -y \
     fastfetch \
     lm-sensors \
-    tmux \
     autojump \
     python3-pip \
     python3-venv \
@@ -54,6 +53,7 @@ install_tools() {
   sudo apt install -y python3-i3ipc python3-libtmux
 
   . ${XDG_CONFIG_HOME}/scripts/install-lazygit.sh
+  . ${XDG_CONFIG_HOME}/scripts/install-tmux.sh
   . ${XDG_CONFIG_HOME}/scripts/install-yazi.sh
   . ${XDG_CONFIG_HOME}/scripts/install-fzf.sh
   bash ${XDG_CONFIG_HOME}/scripts/install-node.sh
