@@ -33,6 +33,4 @@ cd "$TMPDIR/tmux-$VERSION"
 make -j"$(nproc)"
 sudo make install
 
-sudo apt remove -y tmux
-
 echo "Installed: $(tmux -V)"

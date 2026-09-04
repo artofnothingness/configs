@@ -25,10 +25,6 @@ mkdir -p "$TMPDIR/extracted"
 tar xzf "$TMPDIR/$ARCHIVE" -C "$TMPDIR/extracted"
 
 DEST="/usr/local"
-if dpkg -s neovim &>/dev/null; then
-    echo "Removing old apt neovim package..."
-    sudo apt remove -y neovim
-fi
 
 sudo apt install -y \
     python3-pip \
