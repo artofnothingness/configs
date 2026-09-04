@@ -63,7 +63,6 @@ install_tools() {
     git config --global pull.rebase true
 
     curl -fsSL https://opencode.ai/install | bash
-    pip3 install hound-mcp --break-system-packages
 }
 
 install_neovim() {
